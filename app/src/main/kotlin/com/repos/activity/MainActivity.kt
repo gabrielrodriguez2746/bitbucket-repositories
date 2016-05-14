@@ -1,7 +1,8 @@
-package com.repos.bitbucketrepositories
+package com.repos.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.repos.bitbucketrepositories.R
 
 class MainActivity : AppCompatActivity() {
 

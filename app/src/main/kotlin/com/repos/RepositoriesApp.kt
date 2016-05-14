@@ -1,4 +1,4 @@
-package com.repos.bitbucketrepositories
+package com.repos
 
 import android.app.Application
 import com.bumptech.glide.Glide

@@ -29,9 +29,9 @@ android {
             dimension "api"
         }
 
-        java {
+        repos {
             dimension "flavors"
-            applicationId "com.bitbucket.java"
+            applicationId "com.repos"
         }
     }
 
