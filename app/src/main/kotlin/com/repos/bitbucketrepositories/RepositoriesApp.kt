@@ -1,6 +1,8 @@
 package com.repos.bitbucketrepositories
 
 import android.app.Application
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 
 /**
  * @author Gabriel Rodriguez
@@ -9,12 +11,14 @@ import android.app.Application
 
 class RepositoriesApp : Application() {
 
-    override fun onCreate() {
-        instance = this
-        super.onCreate()
-    }
+    val glide: RequestManager by lazy { Glide.with(this) }
 
     companion object {
         var instance: RepositoriesApp? = null
+    }
+
+    override fun onCreate() {
+        instance = this
+        super.onCreate()
     }
 }
