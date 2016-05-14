@@ -9,5 +9,7 @@
     <dimen name="medium_space">16dp</dimen>
     <dimen name="medium_big_space">24dp</dimen>
     <dimen name="big_space">32dp</dimen>
-    <dimen name="navigation_view_width">280dp</dimen>
+    <dimen name="bar_layout_height">180dp</dimen>
+    <dimen name="expanded_margin_start">48dp</dimen>
+    <dimen name="expanded_margin_end">64dp</dimen>
 </resources>

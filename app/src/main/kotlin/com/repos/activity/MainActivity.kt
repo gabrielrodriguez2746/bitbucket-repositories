@@ -11,19 +11,5 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setupToolbar()
-    }
-
-    fun setupToolbar() {
-        toolbar.setNavigationIcon(R.drawable.ic_menu)
-        toolbar.setNavigationOnClickListener { drawer.openDrawer(navigation_view) }
-    }
-
-    override fun onBackPressed() {
-        if (drawer.isDrawerOpen(Gravity.START)) {
-            drawer.closeDrawers()
-            return
-        }
-        super.onBackPressed()
     }
 }
