@@ -2,7 +2,7 @@ package com.repos.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.repos.bitbucketrepositories.R
+import com.repos.R
 
 class SplashActivity : AppCompatActivity() {
 
