@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout style="@style/VerticalLayout"></RelativeLayout>
+<RelativeLayout style="@style/VerticalLayout">
+
+    <include layout="@layout/toolbar_layout" />
+
+</RelativeLayout>
