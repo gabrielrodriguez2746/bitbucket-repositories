@@ -19,7 +19,7 @@ android {
     }
 
     flavorDimensions "api", "flavors"
-    productFlavors{
+    productFlavors {
 
         dev {
             dimension "api"
