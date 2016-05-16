@@ -74,4 +74,14 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:orientation">horizontal</item>
     </style>
+
+    <!--Base Splash Text-->
+    <style name="BaseTextView.Splash">
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:paddingBottom">@dimen/medium_space</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/big_text_size</item>
+        <item name="fontPath">@string/font_bold</item>
+    </style>
 </resources>
