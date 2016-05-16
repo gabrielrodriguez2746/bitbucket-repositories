@@ -6,12 +6,72 @@
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
         <item name="android:textSize">@dimen/regular_text_size</item>
+        <item name="android:textColor">@color/primary</item>
     </style>
 
+    <!--Base Vertical Layout-->
     <style name="VerticalLayout">
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:orientation">vertical</item>
     </style>
 
+    <!--Base Card Item-->
+    <style name="CardItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!--Card Item Repositories-->
+    <style name="CardItem.Repositories">
+        <item name="android:layout_marginBottom">@dimen/medium_space</item>
+        <item name="android:layout_marginRight">@dimen/medium_space</item>
+        <item name="android:layout_marginLeft">@dimen/medium_space</item>
+    </style>
+
+    <!--Base RecyclerView-->
+    <style name="BaseRecyclerView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:clipToPadding">true</item>
+    </style>
+
+    <!--Repositories RecyclerView-->
+    <style name="BaseRecyclerView.Repositories">
+        <item name="android:paddingTop">@dimen/medium_space</item>
+    </style>
+
+    <!--Repositories Item View Container-->
+    <style name="RepositoryItemViewContainer">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_marginRight">@dimen/profile_icon_size_margin</item>
+    </style>
+
+    <!--Base TextView Formet-->
+    <style name="BaseTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <!--Extended Info style-->
+    <style name="BaseTextView.RepositoriesExtendInfo">
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:layout_marginTop">@dimen/small_space</item>
+    </style>
+
+    <!--Profile Image Style-->
+    <style name="ProfileImage">
+        <item name="android:layout_width">@dimen/profile_icon_size</item>
+        <item name="android:layout_height">@dimen/profile_icon_size</item>
+    </style>
+
+    <!--Base Horizontal Layout-->
+    <style name="HorizontalLayout">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
 </resources>

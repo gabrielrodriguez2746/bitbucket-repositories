@@ -1,20 +1,19 @@
 package com.repos.view
 
 import android.content.Context
+import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.LinearLayout
-import android.widget.TextView
 import com.repos.R
+import com.repos.RepositoriesApp
 import com.repos.model.Repositories
+import kotlinx.android.synthetic.main.respository_item_view.view.*
 
 /**
  * @author Gabriel Rodriguez
  * @version 1.0
  */
-class RepositoryItemView : LinearLayout {
-
-    val name by lazy { findViewById(R.id.name) as TextView }
+class RepositoryItemView : CardView {
 
     constructor(context: Context) : super(context) {
         init()
@@ -33,6 +32,11 @@ class RepositoryItemView : LinearLayout {
     }
 
     fun bind(repositories: Repositories) {
+        RepositoriesApp.instance!!.glide.load(repositories.user.image).into(image)
         name.text = repositories.name
+        description.text = repositories.description
+        owner_name.text = context.getString(R.string.owner_format_text, repositories.user.name)
+        stars.text = repositories.stars
+        forks.text = repositories.forks
     }
 }

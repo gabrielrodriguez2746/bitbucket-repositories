@@ -15,5 +15,6 @@ class Repositories {
     @SerializedName("stargazers_count") lateinit var stars: String
     @SerializedName("forks_count") lateinit var forks: String
     @SerializedName("owner") lateinit var user: Owner
+    @SerializedName("description") lateinit var description: String
 
 }

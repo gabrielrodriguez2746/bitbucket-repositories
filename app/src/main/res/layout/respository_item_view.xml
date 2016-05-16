@@ -1,13 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/VerticalLayout">
+    style="@style/CardItem.Repositories"
+    app:cardCornerRadius="@dimen/tiny_space"
+    app:cardElevation="@dimen/tiny_space"
+    tools:ignore="MissingPrefix">
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        style="@style/VerticalLayout"
         android:layout_height="wrap_content"
-        android:padding="@dimen/medium_space"
-        tools:text="Repository 1" />
+        android:padding="@dimen/medium_space">
 
-</LinearLayout>
+        <RelativeLayout
+            android:id="@+id/head_container"
+            style="@style/VerticalLayout"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/container"
+                style="@style/RepositoryItemViewContainer">
+
+                <TextView
+                    android:id="@+id/name"
+                    style="@style/BaseTextView"
+                    fontPath="@string/font_bold"
+                    android:textAllCaps="true"
+                    tools:text="Repository 1" />
+
+                <TextView
+                    android:id="@+id/owner_name"
+                    style="@style/BaseTextView.RepositoriesExtendInfo"
+                    fontPath="@string/font_bold"
+                    tools:text="Owner: Facebook" />
+
+                <TextView
+                    android:id="@+id/description"
+                    style="@style/BaseTextView.RepositoriesExtendInfo"
+                    android:maxLines="2"
+                    tools:text="@string/description_text_holder" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/image"
+                style="@style/ProfileImage"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                tools:src="@drawable/ic_menu" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            style="@style/HorizontalLayout"
+            android:layout_below="@id/head_container">
+
+            <TextView
+                android:id="@+id/stars"
+                style="@style/BaseTextView.RepositoriesExtendInfo"
+                fontPath="@string/font_bold"
+                android:layout_marginRight="@dimen/medium_space"
+                android:drawableLeft="@drawable/ic_star"
+                tools:text="432" />
+
+            <TextView
+                android:id="@+id/forks"
+                style="@style/BaseTextView.RepositoriesExtendInfo"
+                fontPath="@string/font_bold"
+                android:drawableLeft="@drawable/ic_fork"
+                tools:text="543" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

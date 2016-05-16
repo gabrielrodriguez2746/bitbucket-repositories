@@ -1,0 +1,4 @@
+<resources>
+    <!--Repository owner format-->
+    <string name="owner_format_text">Creador: %1$s</string>
+</resources>
