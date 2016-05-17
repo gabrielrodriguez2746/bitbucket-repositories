@@ -34,7 +34,6 @@ class RepositoryItemView : CardView {
     fun bind(repositories: Repositories) {
         RepositoriesApp.instance!!.glide.load(repositories.user.image).into(image)
         name.text = repositories.name
-        description.text = repositories.description
         owner_name.text = context.getString(R.string.owner_format_text, repositories.user.name)
         stars.text = repositories.stars
         forks.text = repositories.forks
