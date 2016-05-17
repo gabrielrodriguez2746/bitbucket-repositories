@@ -14,4 +14,5 @@
     <dimen name="expanded_margin_end">64dp</dimen>
     <dimen name="profile_icon_size">46dp</dimen>
     <dimen name="profile_icon_size_margin">54dp</dimen>
+    <dimen name="loading_size">48dp</dimen>
 </resources>
