@@ -1,9 +1,9 @@
 package com.repos.listener
 
-import com.repos.model.Response
+import com.repos.model.ResponseWrapper
+import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
-import rx.Observable
 
 /**
  * @author Gabriel Rodriguez
@@ -19,6 +19,6 @@ interface GitHubService {
     fun getRepositories(
             @Query("sort") sort: String = "stars",
             @Query("q") q: String = "language:Java",
-            @Query("page") page: String = "1"): Observable<Response>
+            @Query("page") page: String = "1"): Call<ResponseWrapper>
 
 }

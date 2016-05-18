@@ -8,7 +8,7 @@ import java.util.*
  * @version 1.0
  * Allows to get data from web service Response
  */
-class Response {
+class ResponseWrapper {
 
     @SerializedName("items") lateinit var items: ArrayList<Repositories>
 

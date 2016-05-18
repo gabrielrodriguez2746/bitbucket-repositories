@@ -5,7 +5,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.repos.listener.GitHubService
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
@@ -18,9 +17,8 @@ class RepositoriesApp : Application() {
 
     val glide: RequestManager by lazy { Glide.with(this) }
     val retrofit by lazy {
-        Retrofit.Builder().addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create()).baseUrl(GitHubService.SERVICE_ENDPOINT)
-                .build()
+        Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(GitHubService.SERVICE_ENDPOINT).build()
     }
 
     companion object {

@@ -5,13 +5,15 @@ import com.repos.R
 import com.repos.RepositoriesApp
 import com.repos.adapter.RepositoriesAdapter
 import com.repos.listener.GitHubService
+import com.repos.model.ResponseWrapper
 import com.repos.view.hide
 import com.repos.view.linearVertical
 import com.repos.view.show
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.circular_loading.*
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : BaseActivity() {
 
@@ -25,7 +27,7 @@ class MainActivity : BaseActivity() {
     }
 
     /**
-     * SetUp the [Repositories] [RecyclerView]
+     * SetUp the [ResponseWrapper] [RecyclerView]
      */
     fun setUpRepositoriesRecyclerView() {
         rv_repositories.linearVertical()
@@ -33,17 +35,24 @@ class MainActivity : BaseActivity() {
     }
 
     /**
-     * Get [Repositories] from the web Service
+     * Get [ResponseWrapper] from the web Service
      */
     fun getRepositories() {
         loading.show()
         val service = RepositoriesApp.instance!!.retrofit.create(GitHubService::class.java)
-        service.getRepositories().subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { response ->
-                    loading.hide()
-                    mRepositoriesAdapter.items = response.items
-                }
+        service.getRepositories().enqueue(object : Callback<ResponseWrapper> {
+            override fun onResponse(call: Call<ResponseWrapper>?, response: Response<ResponseWrapper>?) {
+                loading.hide()
+                if (response?.isSuccessful ?: false) mRepositoriesAdapter.items = response!!.body().items
+                // else SnackBar Error and Retry
+            }
+
+            override fun onFailure(call: Call<ResponseWrapper>?, t: Throwable?) {
+                loading.hide()
+                //Show SnackBar Error and retry
+            }
+
+        })
     }
 }
 
