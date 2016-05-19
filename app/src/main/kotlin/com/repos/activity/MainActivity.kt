@@ -2,10 +2,15 @@ package com.repos.activity
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v7.widget.RecyclerView
+import android.view.View
+import android.widget.Toast
+import com.deliveriu.listener.ItemClickSupport
 import com.repos.R
 import com.repos.RepositoriesApp
 import com.repos.adapter.RepositoriesAdapter
 import com.repos.listener.GitHubService
+import com.repos.model.PullResponseWrapper
 import com.repos.model.ResponseWrapper
 import com.repos.view.hide
 import com.repos.view.linearVertical
@@ -20,6 +25,7 @@ import retrofit2.Response
 class MainActivity : BaseActivity() {
 
     val mRepositoriesAdapter = RepositoriesAdapter()
+    val service by lazy { RepositoriesApp.instance!!.retrofit.create(GitHubService::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +40,22 @@ class MainActivity : BaseActivity() {
     fun setUpRepositoriesRecyclerView() {
         rv_repositories.linearVertical()
         rv_repositories.adapter = mRepositoriesAdapter
+        ItemClickSupport.addTo(rv_repositories).setOnItemClickListener(object : ItemClickSupport.OnItemClickListener {
+            override fun onItemClicked(recyclerView: RecyclerView, position: Int, v: View) {
+                val repository = mRepositoriesAdapter.items[position]
+                service.getPull(repository.path).enqueue(object : Callback<PullResponseWrapper> {
+                    override fun onResponse(call: Call<PullResponseWrapper>?, response: Response<PullResponseWrapper>?) {
+                        Toast.makeText(this@MainActivity, "Todo bien", Toast.LENGTH_LONG).show()
+                    }
+
+                    override fun onFailure(call: Call<PullResponseWrapper>?, t: Throwable?) {
+                        Toast.makeText(this@MainActivity, "Todo mal", Toast.LENGTH_LONG).show()
+                    }
+
+                })
+            }
+
+        })
     }
 
     /**
@@ -41,7 +63,6 @@ class MainActivity : BaseActivity() {
      */
     fun getRepositories() {
         loading.show()
-        val service = RepositoriesApp.instance!!.retrofit.create(GitHubService::class.java)
         service.getRepositories().enqueue(object : Callback<ResponseWrapper> {
             override fun onResponse(call: Call<ResponseWrapper>?, response: Response<ResponseWrapper>?) {
                 loading.hide()
@@ -53,7 +74,6 @@ class MainActivity : BaseActivity() {
                 loading.hide()
                 showSnackBarNoInternetConnection()
             }
-
         })
     }
 

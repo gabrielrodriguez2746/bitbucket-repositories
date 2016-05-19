@@ -12,7 +12,6 @@ class RepositoriesAdapter : RecyclerViewBaseAdapter<Repositories, RepositoryItem
 
     override fun onCreateItemView(parent: ViewGroup, viewType: Int): RepositoryItemView {
         return RepositoryItemView(parent.context)
-
     }
 
     override fun onBindViewHolder(holder: ViewWrapper<RepositoryItemView>?, position: Int) {
