@@ -1,4 +1,6 @@
 <resources>
     <!--Repository owner format-->
     <string name="owner_format_text">Creador: %1$s</string>
+    <!--No internet notification-->
+    <string name="no_internet">Sin conexión a internet</string>
 </resources>

@@ -2,6 +2,9 @@
     <string name="app_name" translatable="false">Bitbucket Repositories</string>
     <!--Repository owner format-->
     <string name="owner_format_text">Owner: %1$s</string>
-    <!--Description Text Holder-->
-    <string name="description_text_holder">Description of Repository 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <!--No internet notification-->
+    <string name="no_internet">No internet connection</string>
+    <!--Retry-->
+    <string name="retry">RETRY</string>
+
 </resources>
