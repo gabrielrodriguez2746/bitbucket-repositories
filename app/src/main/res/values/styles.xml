@@ -99,6 +99,18 @@
         <item name="android:ellipsize">end</item>
     </style>
 
-    <!--Repositories RecyclerView-->
+    <!--PullRequest RecyclerView-->
     <style name="BaseRecyclerView.PullRequest" parent="BaseRecyclerView.Repositories" />
+
+    <!--PullRequest Item View Container-->
+    <style name="PullRequestItemViewContainer" parent="RepositoryItemViewContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_centerHorizontal">false</item>
+        <item name="android:layout_marginTop">@dimen/small_space</item>
+        <item name="android:paddingLeft">@dimen/medium_space</item>
+    </style>
+
+    <!--Pull Request Extended Info style-->
+    <style name="PullRequestExtendInfo" parent="BaseTextView.RepositoriesExtendInfo" />
 </resources>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/CardItem.Repositories"
+    app:cardCornerRadius="@dimen/tiny_space"
+    app:cardElevation="@dimen/tiny_space"
+    app:contentPadding="@dimen/medium_space"
+    tools:ignore="MissingPrefix">
+
+    <RelativeLayout
+        android:id="@+id/head_container"
+        style="@style/VerticalLayout"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/container"
+            style="@style/PullRequestItemViewContainer"
+            android:layout_toRightOf="@+id/image">
+
+            <TextView
+                android:id="@+id/name"
+                style="@style/BaseTextView"
+                fontPath="@string/font_bold"
+                android:textAllCaps="true"
+                tools:text="Pull Request 1" />
+
+            <TextView
+                android:id="@+id/owner_name"
+                style="@style/PullRequestExtendInfo"
+                tools:text="Owner: Facebook" />
+
+            <TextView
+                android:id="@+id/state_name"
+                style="@style/PullRequestExtendInfo"
+                tools:text="State: Open" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/image"
+            style="@style/ProfileImage"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            tools:src="@drawable/ic_menu" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

@@ -5,7 +5,8 @@
     android:id="@+id/head_container"
     style="@style/VerticalLayout"
     android:layout_height="wrap_content"
-    android:padding="@dimen/medium_space">
+    android:padding="@dimen/medium_space"
+    tools:ignore="MissingPrefix">
 
     <ImageView
         android:id="@+id/image"
