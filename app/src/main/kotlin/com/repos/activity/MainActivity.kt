@@ -2,7 +2,6 @@ package com.repos.activity
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.deliveriu.listener.ItemClickSupport
@@ -24,7 +23,6 @@ class MainActivity : BaseActivity() {
 
     val mRepositoriesAdapter = RepositoriesAdapter()
     val service by lazy { RepositoriesApp.instance!!.retrofit.create(GitHubService::class.java) }
-    val swipeToRefresh by lazy { findViewById(R.id.swipe_refresh_layout) as SwipeRefreshLayout }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,7 +92,7 @@ class MainActivity : BaseActivity() {
      * Set [SwipeRefreshLayout] behavior
      */
     fun setSwipeToRefresh() {
-        swipeToRefresh.setOnRefreshListener {
+        swipe_refresh_layout.setOnRefreshListener {
             getRepositories()
         }
     }
@@ -104,6 +102,6 @@ class MainActivity : BaseActivity() {
      */
     fun removeLoadingViews() {
         loading.hide()
-        swipeToRefresh.isRefreshing = false
+        swipe_refresh_layout.isRefreshing = false
     }
 }
