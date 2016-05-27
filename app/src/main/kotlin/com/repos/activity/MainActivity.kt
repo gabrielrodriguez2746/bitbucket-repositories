@@ -4,18 +4,14 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.Toast
 import com.deliveriu.listener.ItemClickSupport
 import com.repos.R
 import com.repos.RepositoriesApp
 import com.repos.adapter.RepositoriesAdapter
+import com.repos.fragment.PullRequestFragment
 import com.repos.listener.GitHubService
-import com.repos.model.PullResponseWrapper
 import com.repos.model.ResponseWrapper
-import com.repos.view.hide
-import com.repos.view.linearVertical
-import com.repos.view.setTextColor
-import com.repos.view.show
+import com.repos.view.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.circular_loading.*
 import retrofit2.Call
@@ -42,17 +38,7 @@ class MainActivity : BaseActivity() {
         rv_repositories.adapter = mRepositoriesAdapter
         ItemClickSupport.addTo(rv_repositories).setOnItemClickListener(object : ItemClickSupport.OnItemClickListener {
             override fun onItemClicked(recyclerView: RecyclerView, position: Int, v: View) {
-                val repository = mRepositoriesAdapter.items[position]
-                service.getPull(repository.path).enqueue(object : Callback<PullResponseWrapper> {
-                    override fun onResponse(call: Call<PullResponseWrapper>?, response: Response<PullResponseWrapper>?) {
-                        Toast.makeText(this@MainActivity, "Todo bien", Toast.LENGTH_LONG).show()
-                    }
-
-                    override fun onFailure(call: Call<PullResponseWrapper>?, t: Throwable?) {
-                        Toast.makeText(this@MainActivity, "Todo mal", Toast.LENGTH_LONG).show()
-                    }
-
-                })
+                addPullRequestFragment(mRepositoriesAdapter.items[position].path)
             }
 
         })
@@ -81,9 +67,22 @@ class MainActivity : BaseActivity() {
      * Show [Snackbar] to retry download the data
      */
     fun showSnackBarNoInternetConnection() {
-        val mSnackbar = Snackbar.make(coordinator_layout, R.string.no_internet, Snackbar.LENGTH_INDEFINITE)
-                .setAction(R.string.retry, { getRepositories() })
-        mSnackbar.setTextColor(this, R.color.text_light)
-        mSnackbar.show()
+//        val mSnackbar = Snackbar.make(coordinator_layout, R.string.no_internet, Snackbar.LENGTH_INDEFINITE)
+//                .setAction(R.string.retry, { getRepositories() })
+//        mSnackbar.setTextColor(this, R.color.text_light)
+//        mSnackbar.show()
+    }
+
+    /**
+     * Add [PullRequestFragment] to [MainActivity] backStack
+     * @param path of Pull Request to show
+     */
+    fun addPullRequestFragment(path: String) {
+        val pullRequestFragment = PullRequestFragment()
+        val arguments = Bundle()
+        arguments.putString(PullRequestFragment.REPOSITORY_PULL_REQUEST, path)
+        pullRequestFragment.arguments = arguments
+        window.setUnTouchable()
+        addFragmentToBackStack(pullRequestFragment, R.id.coordinator_layout, PullRequestFragment.PULL_REQUEST_FRAGMENT_TAG)
     }
 }

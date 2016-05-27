@@ -12,7 +12,13 @@ import com.repos.R
  */
 class PullRequestFragment : BaseAnimateFragment() {
 
+    companion object {
+        val PULL_REQUEST_FRAGMENT_TAG = "pullRequestFragment"
+        val REPOSITORY_PULL_REQUEST = "repositoryPullRequest"
+    }
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        retainInstance = true
         return inflater?.inflate(R.layout.fragment_pull_request, container, false)
     }
 
