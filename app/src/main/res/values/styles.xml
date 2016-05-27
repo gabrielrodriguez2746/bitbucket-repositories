@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
+        <item name="android:windowBackground">@color/background</item>
         <item name="android:textSize">@dimen/regular_text_size</item>
         <item name="android:textColor">@color/primary</item>
         <item name="android:windowContentTransitions">true</item>

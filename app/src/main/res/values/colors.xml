@@ -5,4 +5,5 @@
     <color name="accent">#F5721F</color>
     <color name="loading">@color/primary</color>
     <color name="text_light">@android:color/white</color>
+    <color name="background">@android:color/background_light</color>
 </resources>
