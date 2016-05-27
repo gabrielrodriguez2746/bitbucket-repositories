@@ -49,7 +49,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:layout_marginRight">@dimen/profile_icon_size_margin</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">@dimen/small_space</item>
     </style>
 
     <!--Base TextView Formet-->
@@ -74,7 +75,7 @@
     <!--Base Horizontal Layout-->
     <style name="HorizontalLayout">
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:orientation">horizontal</item>
     </style>
 
@@ -86,5 +87,15 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/big_text_size</item>
         <item name="fontPath">@string/font_bold</item>
+    </style>
+
+    <!--Description Info style-->
+    <style name="BaseTextView.Description">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:layout_marginTop">@dimen/small_space</item>
+        <item name="android:maxLines">5</item>
+        <item name="android:ellipsize">end</item>
     </style>
 </resources>

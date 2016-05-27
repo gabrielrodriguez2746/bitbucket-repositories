@@ -37,5 +37,6 @@ class RepositoryItemView : CardView {
         owner_name.text = context.getString(R.string.owner_format_text, repositories.user.name)
         stars.text = repositories.stars
         forks.text = repositories.forks
+        description.text = repositories.description
     }
 }
