@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -59,4 +60,16 @@ fun Window.setUnTouchable() {
  */
 fun Window.setTouchable() {
     this.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+}
+
+/**
+ * Set the Layout Manager of a RecyclerView as Vertical Masonry
+ * @param decoration Decoration related normally with items separation
+ * @param numColumns Number of columns of masonry, normally 2
+ */
+fun RecyclerView.verticalMasonry(decoration: RecyclerView.ItemDecoration, numColumns: Int = 2) {
+    this.layoutManager = StaggeredGridLayoutManager(numColumns, StaggeredGridLayoutManager.VERTICAL)
+    this.setHasFixedSize(true)
+    this.addItemDecoration(decoration)
+
 }

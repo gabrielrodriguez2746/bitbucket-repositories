@@ -8,6 +8,7 @@ import com.deliveriu.listener.ItemClickSupport
 import com.repos.R
 import com.repos.RepositoriesApp
 import com.repos.adapter.RepositoriesAdapter
+import com.repos.adapter.SpacesItemDecoration
 import com.repos.fragment.PullRequestFragment
 import com.repos.listener.GitHubService
 import com.repos.model.ResponseWrapper
@@ -34,7 +35,7 @@ class MainActivity : BaseActivity() {
      * SetUp the [ResponseWrapper] [RecyclerView]
      */
     fun setUpRepositoriesRecyclerView() {
-        rv_repositories.linearVertical()
+        rv_repositories.verticalMasonry(SpacesItemDecoration(24))
         rv_repositories.adapter = mRepositoriesAdapter
         ItemClickSupport.addTo(rv_repositories).setOnItemClickListener(object : ItemClickSupport.OnItemClickListener {
             override fun onItemClicked(recyclerView: RecyclerView, position: Int, v: View) {
@@ -67,10 +68,10 @@ class MainActivity : BaseActivity() {
      * Show [Snackbar] to retry download the data
      */
     fun showSnackBarNoInternetConnection() {
-//        val mSnackbar = Snackbar.make(coordinator_layout, R.string.no_internet, Snackbar.LENGTH_INDEFINITE)
-//                .setAction(R.string.retry, { getRepositories() })
-//        mSnackbar.setTextColor(this, R.color.text_light)
-//        mSnackbar.show()
+        val mSnackbar = Snackbar.make(coordinator_layout, R.string.no_internet, Snackbar.LENGTH_INDEFINITE)
+                .setAction(R.string.retry, { getRepositories() })
+        mSnackbar.setTextColor(this, R.color.text_light)
+        mSnackbar.show()
     }
 
     /**
