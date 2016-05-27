@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.repos.R
+import com.repos.view.linearVertical
+import kotlinx.android.synthetic.main.fragment_pull_request.*
 
 /**
  * @author Gabriel Rodriguez
@@ -24,6 +26,7 @@ class PullRequestFragment : BaseAnimateFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        rv_pull_request.linearVertical()
     }
 
 }
