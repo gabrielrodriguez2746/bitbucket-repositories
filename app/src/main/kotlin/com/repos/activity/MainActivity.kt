@@ -2,6 +2,7 @@ package com.repos.activity
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.deliveriu.listener.ItemClickSupport
@@ -23,11 +24,14 @@ class MainActivity : BaseActivity() {
 
     val mRepositoriesAdapter = RepositoriesAdapter()
     val service by lazy { RepositoriesApp.instance!!.retrofit.create(GitHubService::class.java) }
+    val swipeToRefresh by lazy { findViewById(R.id.swipe_refresh_layout) as SwipeRefreshLayout }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        loading.show()
         setUpRepositoriesRecyclerView()
+        setSwipeToRefresh()
         getRepositories()
     }
 
@@ -49,16 +53,15 @@ class MainActivity : BaseActivity() {
      * Get [ResponseWrapper] from the web Service
      */
     fun getRepositories() {
-        loading.show()
         service.getRepositories().enqueue(object : Callback<ResponseWrapper> {
             override fun onResponse(call: Call<ResponseWrapper>?, response: Response<ResponseWrapper>?) {
-                loading.hide()
+                removeLoadingViews()
                 if (response?.isSuccessful ?: false) mRepositoriesAdapter.items = response!!.body().items
                 else showSnackBarNoInternetConnection()
             }
 
             override fun onFailure(call: Call<ResponseWrapper>?, t: Throwable?) {
-                loading.hide()
+                removeLoadingViews()
                 showSnackBarNoInternetConnection()
             }
         })
@@ -84,6 +87,23 @@ class MainActivity : BaseActivity() {
         arguments.putString(PullRequestFragment.REPOSITORY_PULL_REQUEST, path)
         pullRequestFragment.arguments = arguments
         window.setUnTouchable()
-        addFragmentToBackStack(pullRequestFragment, R.id.coordinator_layout, PullRequestFragment.PULL_REQUEST_FRAGMENT_TAG)
+        addFragmentToBackStack(pullRequestFragment, R.id.fragment_container, PullRequestFragment.PULL_REQUEST_FRAGMENT_TAG)
+    }
+
+    /**
+     * Set [SwipeRefreshLayout] behavior
+     */
+    fun setSwipeToRefresh() {
+        swipeToRefresh.setOnRefreshListener {
+            getRepositories()
+        }
+    }
+
+    /**
+     * Remove [SwipeRefreshLayout] and loading [View] after fetch the data
+     */
+    fun removeLoadingViews() {
+        loading.hide()
+        swipeToRefresh.isRefreshing = false
     }
 }
