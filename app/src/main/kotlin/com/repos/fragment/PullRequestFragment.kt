@@ -7,9 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import com.deliveriu.listener.ItemClickSupport
 import com.repos.R
+import com.repos.activity.MainActivity
 import com.repos.adapter.PullRequestAdapter
+import com.repos.model.PullResponseWrapper
+import com.repos.view.hide
 import com.repos.view.linearVertical
+import com.repos.view.show
+import kotlinx.android.synthetic.main.circular_loading.*
 import kotlinx.android.synthetic.main.fragment_pull_request.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /**
  * @author Gabriel Rodriguez
@@ -17,7 +25,8 @@ import kotlinx.android.synthetic.main.fragment_pull_request.*
  */
 class PullRequestFragment : BaseAnimateFragment() {
 
-    val pullRequestAdapter = PullRequestAdapter()
+    val mPullRequestAdapter = PullRequestAdapter()
+    lateinit var pullRequestPath: String
 
     companion object {
         val PULL_REQUEST_FRAGMENT_TAG = "pullRequestFragment"
@@ -31,7 +40,11 @@ class PullRequestFragment : BaseAnimateFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        pullRequestPath = arguments.getString(REPOSITORY_PULL_REQUEST)
         setupPullRequestRecyclerView()
+        setSwipeToRefresh()
+        loading.show()
+        getPullRequest()
     }
 
     /**
@@ -39,8 +52,8 @@ class PullRequestFragment : BaseAnimateFragment() {
      */
     fun setupPullRequestRecyclerView() {
         rv_pull_request.linearVertical()
-        rv_pull_request.adapter = pullRequestAdapter
-        ItemClickSupport.addTo(rv_pull_request).setOnItemClickListener(object : ItemClickSupport.OnItemClickListener{
+        rv_pull_request.adapter = mPullRequestAdapter
+        ItemClickSupport.addTo(rv_pull_request).setOnItemClickListener(object : ItemClickSupport.OnItemClickListener {
             override fun onItemClicked(recyclerView: RecyclerView, position: Int, v: View) {
                 // Launch intent
             }
@@ -48,4 +61,42 @@ class PullRequestFragment : BaseAnimateFragment() {
         })
     }
 
+    /**
+     * Get [PullRequestWrappr] from the web Service
+     */
+    private fun getPullRequest() {
+        (activity as MainActivity).service.getPull(pullRequestPath).enqueue(object : Callback<PullResponseWrapper> {
+            override fun onResponse(call: Call<PullResponseWrapper>?, response: Response<PullResponseWrapper>?) {
+                removeLoadingViews()
+                if (response?.isSuccessful ?: false) {
+                    mPullRequestAdapter.items = response!!.body().response
+                } else {
+                    // Reload data
+                }
+            }
+
+            override fun onFailure(call: Call<PullResponseWrapper>?, t: Throwable?) {
+                removeLoadingViews()
+                // Reload data
+            }
+
+        })
+    }
+
+    /**
+     * Remove [SwipeRefreshLayout] and loading [View] after fetch the data
+     */
+    fun removeLoadingViews() {
+        loading.hide()
+        fragment_swipe_refresh_layout.isRefreshing = false
+    }
+
+    /**
+     * Set [SwipeRefreshLayout] behavior
+     */
+    fun setSwipeToRefresh() {
+        fragment_swipe_refresh_layout.setOnRefreshListener {
+            getPullRequest()
+        }
+    }
 }
