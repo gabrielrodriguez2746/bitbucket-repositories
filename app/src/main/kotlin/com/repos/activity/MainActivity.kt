@@ -3,6 +3,7 @@ package com.repos.activity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.Toolbar
 import android.view.View
 import com.deliveriu.listener.ItemClickSupport
 import com.repos.R
@@ -24,20 +25,22 @@ class MainActivity : BaseActivity() {
 
     val mRepositoriesAdapter = RepositoriesAdapter()
     val service by lazy { RepositoriesApp.instance!!.retrofit.create(GitHubService::class.java) }
+    val toolbar by lazy { findViewById(R.id.toolbar) as Toolbar }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         loading.show()
-        setUpRepositoriesRecyclerView()
-        setSwipeToRefresh()
+        setupToolbar()
+        setupRepositoriesRecyclerView()
+        setupSwipeToRefresh()
         getRepositories()
     }
 
     /**
      * SetUp the [ResponseWrapper] [RecyclerView]
      */
-    fun setUpRepositoriesRecyclerView() {
+    fun setupRepositoriesRecyclerView() {
         rv_repositories.verticalMasonry(SpacesItemDecoration(24))
         rv_repositories.adapter = mRepositoriesAdapter
         ItemClickSupport.addTo(rv_repositories).setOnItemClickListener(object : ItemClickSupport.OnItemClickListener {
@@ -70,7 +73,7 @@ class MainActivity : BaseActivity() {
      * Show [Snackbar] to retry download the data
      */
     fun showSnackBarNoInternetConnection() {
-        val mSnackbar = Snackbar.make(coordinator_layout, R.string.no_internet, Snackbar.LENGTH_INDEFINITE)
+        val mSnackbar = Snackbar.make(fragment_container, R.string.no_internet, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.retry, { getRepositories() })
         mSnackbar.setTextColor(this, R.color.text_light)
         mSnackbar.show()
@@ -78,7 +81,7 @@ class MainActivity : BaseActivity() {
 
     /**
      * Add [PullRequestFragment] to [MainActivity] backStack
-     * @param path of Pull Request to show
+     * @param repository selected
      */
     fun addPullRequestFragment(repository: Repositories) {
         val pullRequestFragment = PullRequestFragment()
@@ -93,7 +96,7 @@ class MainActivity : BaseActivity() {
     /**
      * Set [SwipeRefreshLayout] behavior
      */
-    fun setSwipeToRefresh() {
+    fun setupSwipeToRefresh() {
         swipe_refresh_layout.setOnRefreshListener {
             getRepositories()
         }
@@ -105,5 +108,10 @@ class MainActivity : BaseActivity() {
     fun removeLoadingViews() {
         loading.hide()
         swipe_refresh_layout.isRefreshing = false
+    }
+
+
+    private fun setupToolbar() {
+        toolbar.setNavigationIcon(R.drawable.ic_menu)
     }
 }

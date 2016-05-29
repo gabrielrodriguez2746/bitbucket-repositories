@@ -1,15 +1,17 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
-        <item name="android:windowBackground">@color/background</item>
+        <item name="android:windowBackground">@color/primary_dark</item>
         <item name="android:textSize">@dimen/regular_text_size</item>
         <item name="android:textColor">@color/primary</item>
         <item name="android:windowContentTransitions">true</item>
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 
     <!--Base Vertical Layout-->
@@ -75,7 +77,7 @@
     <!--Base Horizontal Layout-->
     <style name="HorizontalLayout">
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:orientation">horizontal</item>
     </style>
 
@@ -84,7 +86,6 @@
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:paddingBottom">@dimen/medium_space</item>
-        <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/big_text_size</item>
         <item name="fontPath">@string/font_bold</item>
     </style>
