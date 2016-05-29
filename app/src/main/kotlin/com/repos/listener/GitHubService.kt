@@ -23,7 +23,8 @@ interface GitHubService {
             @Query("q") q: String = "language:Java",
             @Query("page") page: String = "1"): Call<ResponseWrapper>
 
-    @GET("/repos/{path}/pulls")
-    fun getPull(@Path("path") path: String) : Call<PullResponseWrapper>
+    @GET("/repos/{creator}/{repository}/pulls")
+    fun getPull(@Path("creator") creator: String, @Path("repository") repository: String)
+            : Call<PullResponseWrapper>
 
 }

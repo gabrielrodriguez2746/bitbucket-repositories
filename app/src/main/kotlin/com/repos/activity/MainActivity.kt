@@ -11,6 +11,7 @@ import com.repos.adapter.RepositoriesAdapter
 import com.repos.adapter.SpacesItemDecoration
 import com.repos.fragment.PullRequestFragment
 import com.repos.listener.GitHubService
+import com.repos.model.Repositories
 import com.repos.model.ResponseWrapper
 import com.repos.view.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -41,7 +42,7 @@ class MainActivity : BaseActivity() {
         rv_repositories.adapter = mRepositoriesAdapter
         ItemClickSupport.addTo(rv_repositories).setOnItemClickListener(object : ItemClickSupport.OnItemClickListener {
             override fun onItemClicked(recyclerView: RecyclerView, position: Int, v: View) {
-                addPullRequestFragment(mRepositoriesAdapter.items[position].path)
+                addPullRequestFragment(mRepositoriesAdapter.items[position])
             }
 
         })
@@ -79,10 +80,11 @@ class MainActivity : BaseActivity() {
      * Add [PullRequestFragment] to [MainActivity] backStack
      * @param path of Pull Request to show
      */
-    fun addPullRequestFragment(path: String) {
+    fun addPullRequestFragment(repository: Repositories) {
         val pullRequestFragment = PullRequestFragment()
         val arguments = Bundle()
-        arguments.putString(PullRequestFragment.REPOSITORY_PULL_REQUEST, path)
+        arguments.putString(PullRequestFragment.REPOSITORY_OWNER, repository.user.name)
+        arguments.putString(PullRequestFragment.REPOSITORY_NAME, repository.name)
         pullRequestFragment.arguments = arguments
         window.setUnTouchable()
         addFragmentToBackStack(pullRequestFragment, R.id.fragment_container, PullRequestFragment.PULL_REQUEST_FRAGMENT_TAG)

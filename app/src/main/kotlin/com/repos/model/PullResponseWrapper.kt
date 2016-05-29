@@ -6,7 +6,6 @@ import java.util.*
  * @author Gabriel Rodriguez
  * @version 1.0
  */
-class PullResponseWrapper {
+class PullResponseWrapper : ArrayList<PullRequest>() {
 
-    lateinit var response: ArrayList<PullRequest>
 }

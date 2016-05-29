@@ -26,11 +26,14 @@ import retrofit2.Response
 class PullRequestFragment : BaseAnimateFragment() {
 
     val mPullRequestAdapter = PullRequestAdapter()
-    lateinit var pullRequestPath: String
+    var fragmentArguments : Bundle? = null
+    val repositoryName by lazy { fragmentArguments?.getString(REPOSITORY_NAME) }
+    val repositoryOwner by lazy { fragmentArguments?.getString(REPOSITORY_OWNER) }
 
     companion object {
         val PULL_REQUEST_FRAGMENT_TAG = "pullRequestFragment"
-        val REPOSITORY_PULL_REQUEST = "repositoryPullRequest"
+        val REPOSITORY_OWNER = "repositoryOwner"
+        val REPOSITORY_NAME = "repositoryName"
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -40,7 +43,7 @@ class PullRequestFragment : BaseAnimateFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        pullRequestPath = arguments.getString(REPOSITORY_PULL_REQUEST)
+        fragmentArguments = arguments
         setupPullRequestRecyclerView()
         setSwipeToRefresh()
         loading.show()
@@ -65,11 +68,11 @@ class PullRequestFragment : BaseAnimateFragment() {
      * Get [PullRequestWrappr] from the web Service
      */
     private fun getPullRequest() {
-        (activity as MainActivity).service.getPull(pullRequestPath).enqueue(object : Callback<PullResponseWrapper> {
+        (activity as MainActivity).service.getPull(repositoryOwner!!, repositoryName!!).enqueue(object : Callback<PullResponseWrapper> {
             override fun onResponse(call: Call<PullResponseWrapper>?, response: Response<PullResponseWrapper>?) {
                 removeLoadingViews()
                 if (response?.isSuccessful ?: false) {
-                    mPullRequestAdapter.items = response!!.body().response
+                    mPullRequestAdapter.items = response!!.body()
                 } else {
                     // Reload data
                 }
