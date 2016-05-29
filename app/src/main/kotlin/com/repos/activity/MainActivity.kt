@@ -86,8 +86,7 @@ class MainActivity : BaseActivity() {
     fun addPullRequestFragment(repository: Repositories) {
         val pullRequestFragment = PullRequestFragment()
         val arguments = Bundle()
-        arguments.putString(PullRequestFragment.REPOSITORY_OWNER, repository.user.name)
-        arguments.putString(PullRequestFragment.REPOSITORY_NAME, repository.name)
+        arguments.putSerializable(PullRequestFragment.REPOSITORY, repository)
         pullRequestFragment.arguments = arguments
         window.setUnTouchable()
         addFragmentToBackStack(pullRequestFragment, R.id.fragment_container, PullRequestFragment.PULL_REQUEST_FRAGMENT_TAG)

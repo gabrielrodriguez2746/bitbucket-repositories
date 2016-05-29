@@ -10,6 +10,7 @@ import com.repos.R
 import com.repos.activity.MainActivity
 import com.repos.adapter.PullRequestAdapter
 import com.repos.model.PullResponseWrapper
+import com.repos.model.Repositories
 import com.repos.view.hide
 import com.repos.view.linearVertical
 import com.repos.view.show
@@ -26,14 +27,12 @@ import retrofit2.Response
 class PullRequestFragment : BaseAnimateFragment() {
 
     val mPullRequestAdapter = PullRequestAdapter()
-    var fragmentArguments : Bundle? = null
-    val repositoryName by lazy { fragmentArguments?.getString(REPOSITORY_NAME) }
-    val repositoryOwner by lazy { fragmentArguments?.getString(REPOSITORY_OWNER) }
+    var fragmentArguments: Bundle? = null
+    val repository by lazy { fragmentArguments?.getSerializable(REPOSITORY) as Repositories }
 
     companion object {
         val PULL_REQUEST_FRAGMENT_TAG = "pullRequestFragment"
-        val REPOSITORY_OWNER = "repositoryOwner"
-        val REPOSITORY_NAME = "repositoryName"
+        val REPOSITORY = "repository"
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -68,7 +67,7 @@ class PullRequestFragment : BaseAnimateFragment() {
      * Get [PullRequestWrappr] from the web Service
      */
     private fun getPullRequest() {
-        (activity as MainActivity).service.getPull(repositoryOwner!!, repositoryName!!).enqueue(object : Callback<PullResponseWrapper> {
+        (activity as MainActivity).service.getPull(repository.user.name, repository.name).enqueue(object : Callback<PullResponseWrapper> {
             override fun onResponse(call: Call<PullResponseWrapper>?, response: Response<PullResponseWrapper>?) {
                 removeLoadingViews()
                 if (response?.isSuccessful ?: false) {
