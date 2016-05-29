@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/HeaderViewContainer"
+    tools:ignore="MissingPrefix">
+
+    <ImageView
+        android:id="@+id/image"
+        style="@style/ProfileImage"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/big_space"
+        tools:src="@drawable/ic_menu" />
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_toRightOf="@+id/image"
+
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/BaseTextView"
+            fontPath="@string/font_bold"
+            android:textAllCaps="true"
+            android:textColor="@color/text_light"
+            tools:text="Repository 1" />
+
+        <LinearLayout style="@style/HorizontalLayout">
+
+            <TextView
+                android:id="@+id/stars"
+                style="@style/BaseTextView.RepositoriesExtendInfo"
+                android:layout_marginRight="@dimen/medium_space"
+                android:drawableLeft="@drawable/ic_star"
+                android:textColor="@color/text_light"
+                tools:text="432" />
+
+            <TextView
+                android:id="@+id/forks"
+                style="@style/BaseTextView.RepositoriesExtendInfo"
+                android:drawableLeft="@drawable/ic_fork"
+                android:textColor="@color/text_light"
+                tools:text="543" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

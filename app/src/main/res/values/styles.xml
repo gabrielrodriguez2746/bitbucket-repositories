@@ -36,7 +36,7 @@
 
     <!--Base RecyclerView-->
     <style name="BaseRecyclerView">
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:clipToPadding">true</item>
     </style>
@@ -114,4 +114,24 @@
 
     <!--Pull Request Extended Info style-->
     <style name="PullRequestExtendInfo" parent="BaseTextView.RepositoriesExtendInfo" />
+
+    <!--Header Container-->
+    <style name="HeaderViewContainer" parent="VerticalLayout">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingBottom">@dimen/small_space</item>
+        <item name="android:paddingLeft">@dimen/small_space</item>
+        <item name="android:paddingRight">@dimen/small_space</item>
+        <item name="android:paddingTop">?attr/actionBarSize</item>
+    </style>
+
+    <!--Toolbar Style-->
+    <style name="Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:gravity">top</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:background">@color/primary</item>
+    </style>
 </resources>

@@ -2,11 +2,13 @@ package com.repos.fragment
 
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.deliveriu.listener.ItemClickSupport
 import com.repos.R
+import com.repos.RepositoriesApp
 import com.repos.activity.MainActivity
 import com.repos.adapter.PullRequestAdapter
 import com.repos.model.PullResponseWrapper
@@ -14,8 +16,10 @@ import com.repos.model.Repositories
 import com.repos.view.hide
 import com.repos.view.linearVertical
 import com.repos.view.show
+import com.repos.view.tint
 import kotlinx.android.synthetic.main.circular_loading.*
 import kotlinx.android.synthetic.main.fragment_pull_request.*
+import kotlinx.android.synthetic.main.pull_header_view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,7 +32,9 @@ class PullRequestFragment : BaseAnimateFragment() {
 
     val mPullRequestAdapter = PullRequestAdapter()
     var fragmentArguments: Bundle? = null
+    var rootView: View? = null
     val repository by lazy { fragmentArguments?.getSerializable(REPOSITORY) as Repositories }
+    val toolbar by lazy { rootView?.findViewById(R.id.toolbar) as Toolbar }
 
     companion object {
         val PULL_REQUEST_FRAGMENT_TAG = "pullRequestFragment"
@@ -43,9 +49,12 @@ class PullRequestFragment : BaseAnimateFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fragmentArguments = arguments
+        rootView = view
+        setupToolbar()
         setupPullRequestRecyclerView()
-        setSwipeToRefresh()
+        setupSwipeToRefresh()
         loading.show()
+        activity.runOnUiThread { bindRepository() }
         getPullRequest()
     }
 
@@ -96,9 +105,24 @@ class PullRequestFragment : BaseAnimateFragment() {
     /**
      * Set [SwipeRefreshLayout] behavior
      */
-    fun setSwipeToRefresh() {
+    fun setupSwipeToRefresh() {
         fragment_swipe_refresh_layout.setOnRefreshListener {
             getPullRequest()
         }
+    }
+
+    fun bindRepository() {
+        RepositoriesApp.instance!!.glide.load(repository.user.image).into(image)
+        name.text = repository.name
+        stars.text = repository.stars
+        stars.compoundDrawables[0].tint(context, R.color.text_light)
+        forks.text = repository.forks
+        forks.compoundDrawables[0].tint(context, R.color.text_light)
+    }
+
+
+    private fun setupToolbar() {
+        toolbar.setNavigationIcon(R.drawable.ic_back)
+        toolbar.setNavigationOnClickListener { activity.onBackPressed() }
     }
 }

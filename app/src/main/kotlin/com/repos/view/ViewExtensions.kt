@@ -1,9 +1,12 @@
 package com.repos.view
 
 import android.content.Context
+import android.graphics.drawable.Drawable
+import android.support.annotation.ColorRes
 import android.support.design.R
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
+import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
@@ -72,4 +75,13 @@ fun RecyclerView.verticalMasonry(decoration: RecyclerView.ItemDecoration, numCol
     this.setHasFixedSize(true)
     this.addItemDecoration(decoration)
 
+}
+
+/**
+ * Tint a drawable using [DrawableCompat]
+ * @param context of drawable
+ * @param colorInt resource int reference
+ */
+fun Drawable.tint(context: Context, @ColorRes colorInt: Int) {
+    DrawableCompat.setTint(this, ContextCompat.getColor(context, colorInt))
 }

@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <include
+    <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        layout="@layout/toolbar_layout"
-        android:background="@color/primary" />
+        style="@style/Toolbar" />
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
