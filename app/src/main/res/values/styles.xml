@@ -133,4 +133,13 @@
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:background">@color/primary</item>
     </style>
+
+    <!--Base NavigationView-->
+    <style name="NavigationView">
+        <item name="android:layout_width">@dimen/navigation_view_width</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:background">@color/background</item>
+        <item name="android:fitsSystemWindows">false</item>
+    </style>
 </resources>

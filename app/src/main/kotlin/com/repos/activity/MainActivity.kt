@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
+import android.view.Gravity
 import android.view.View
 import com.deliveriu.listener.ItemClickSupport
 import com.repos.R
@@ -38,6 +39,14 @@ class MainActivity : BaseActivity() {
         setupRepositoriesRecyclerView()
         setupSwipeToRefresh()
         getRepositories()
+    }
+
+    override fun onBackPressed() {
+        if (drawer.isDrawerOpen(Gravity.START)) {
+            drawer.closeDrawers()
+            return
+        }
+        super.onBackPressed()
     }
 
     /**
@@ -119,5 +128,6 @@ class MainActivity : BaseActivity() {
         toolbar.setNavigationIcon(R.drawable.ic_menu)
         toolbar.title = getString(R.string.toolbar_title,
                 mPrefs.getString(RepositoriesApp.REPOSITORY_TYPE, getString(R.string.default_repositories)))
+        toolbar.setNavigationOnClickListener { drawer.openDrawer(navigation_view) }
     }
 }
