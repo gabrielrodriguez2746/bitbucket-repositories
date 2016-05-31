@@ -23,7 +23,6 @@ class RepositoriesApp : Application() {
 
     companion object {
         var instance: RepositoriesApp? = null
-        val REPOSITORY_TYPE = "repositoryType"
     }
 
     override fun onCreate() {

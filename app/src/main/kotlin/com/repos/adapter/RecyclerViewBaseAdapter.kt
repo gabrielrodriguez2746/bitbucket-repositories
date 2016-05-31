@@ -1,15 +1,13 @@
 package com.repos.adapter
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import java.util.*
 
 /**
  * @author Samuel Barbosa
- * @version 1.0
+ * @version 1.0.1
  * Copied from his owner.
  * It's reduce the code to create a [RecyclerView] Adapter
  */
@@ -20,6 +18,11 @@ abstract class RecyclerViewBaseAdapter<T, V : View> : RecyclerView.Adapter<ViewW
             field = items
             notifyDataSetChanged()
         }
+
+    fun addItems(items: MutableList<T>) {
+        this.items.addAll(items)
+        notifyDataSetChanged()
+    }
 
     override fun getItemCount(): Int {
         return items.size

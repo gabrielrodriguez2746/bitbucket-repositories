@@ -14,4 +14,8 @@
     <string name="hello">Hello</string>
     <!--Hello extension-->
     <string name="hello_extended">Login and enjoy more</string>
+    <!--Default order Repositories-->
+    <string name="order" translatable="false">stars</string>
+    <!--Default language Repositories -->
+    <string name="repo_language">language:%1$s</string>
 </resources>

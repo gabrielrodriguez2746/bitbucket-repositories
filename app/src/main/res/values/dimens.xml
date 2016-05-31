@@ -16,4 +16,5 @@
     <dimen name="profile_icon_size_margin">54dp</dimen>
     <dimen name="loading_size">48dp</dimen>
     <dimen name="navigation_view_width">280dp</dimen>
+    <dimen name="small_loading_size">32dp</dimen>
 </resources>

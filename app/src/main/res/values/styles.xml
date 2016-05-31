@@ -36,14 +36,15 @@
 
     <!--Base RecyclerView-->
     <style name="BaseRecyclerView">
-        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:clipToPadding">true</item>
+        <item name="android:clipToPadding">false</item>
     </style>
 
     <!--Repositories RecyclerView-->
     <style name="BaseRecyclerView.Repositories">
         <item name="android:paddingTop">@dimen/medium_space</item>
+        <item name="android:paddingBottom">@dimen/small_loading_size</item>
     </style>
 
     <!--Repositories Item View Container-->
@@ -150,5 +151,25 @@
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">0</item>
         <item name="android:shadowRadius">20</item>
+    </style>
+
+    <!--Circular ProgressView-->
+    <style name="CircularProgressView" parent="Material.Widget.ProgressView">
+        <item name="android:layout_height">@dimen/loading_size</item>
+        <item name="android:layout_width">@dimen/loading_size</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="cpd_strokeColor">@color/loading</item>
+        <item name="pv_autostart">true</item>
+        <item name="pv_circular">true</item>
+        <item name="pv_progressMode">indeterminate</item>
+        <item name="pv_progressStyle">@style/Material.Drawable.CircularProgress</item>
+    </style>
+
+    <!--Circular Scroll ProgressView-->
+    <style name="CircularProgressView.Scroll">
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_height">@dimen/small_loading_size</item>
+        <item name="android:layout_width">@dimen/small_loading_size</item>
+        <item name="android:layout_marginBottom">@dimen/medium_space</item>
     </style>
 </resources>

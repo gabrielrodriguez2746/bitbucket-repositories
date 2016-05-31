@@ -35,6 +35,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        <com.rey.material.widget.ProgressView
+            android:id="@+id/scroll_loading"
+            style="@style/CircularProgressView.Scroll"
+            android:visibility="gone" />
+
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView
