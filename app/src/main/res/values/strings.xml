@@ -10,4 +10,8 @@
     <string name="toolbar_title" translatable="false">%1$s Repositories</string>
     <!--Default Repositories Type-->
     <string name="default_repositories" translatable="false">Java</string>
+    <!--Hello-->
+    <string name="hello">Hello</string>
+    <!--Hello extension-->
+    <string name="hello_extended">Login and enjoy more</string>
 </resources>

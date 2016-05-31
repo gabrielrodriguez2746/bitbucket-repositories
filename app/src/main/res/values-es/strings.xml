@@ -3,4 +3,8 @@
     <string name="owner_format_text">Creador: %1$s</string>
     <!--No internet notification-->
     <string name="no_internet">Sin conexión a internet</string>
+    <!--Hello-->
+    <string name="hello">Hola</string>
+    <!--Hello extension-->
+    <string name="hello_extended">Registrate y disfruta de más</string>
 </resources>

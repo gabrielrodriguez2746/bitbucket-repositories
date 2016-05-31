@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/VerticalLayout"
+    android:layout_height="@dimen/bar_layout_height"
+    tools:ignore="MissingPrefix">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:src="@drawable/header_background" />
+
+    <RelativeLayout
+        style="@style/VerticalLayout"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingLeft="@dimen/medium_space"
+        android:paddingRight="@dimen/medium_space">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_account" />
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/small_space"
+            android:layout_toRightOf="@+id/image"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name"
+                style="@style/BaseTextView.HeaderMenu"
+                fontPath="@string/font_bold"
+                android:text="@string/hello"
+                android:textAllCaps="true" />
+
+            <TextView
+                android:id="@+id/name_extended"
+                style="@style/BaseTextView.HeaderMenu"
+                android:maxLines="2"
+                android:text="@string/hello_extended"
+                android:textSize="@dimen/small_text_size" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>
+
