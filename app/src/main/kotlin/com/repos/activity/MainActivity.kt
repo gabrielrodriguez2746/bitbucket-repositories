@@ -1,5 +1,6 @@
 package com.repos.activity
 
+import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
@@ -11,6 +12,7 @@ import com.repos.RepositoriesApp
 import com.repos.adapter.RepositoriesAdapter
 import com.repos.adapter.SpacesItemDecoration
 import com.repos.fragment.PullRequestFragment
+import com.repos.getDefaultSharedPreferences
 import com.repos.listener.GitHubService
 import com.repos.model.Repositories
 import com.repos.model.ResponseWrapper
@@ -25,6 +27,7 @@ class MainActivity : BaseActivity() {
 
     val mRepositoriesAdapter = RepositoriesAdapter()
     val service by lazy { RepositoriesApp.instance!!.retrofit.create(GitHubService::class.java) }
+    val mPrefs = (RepositoriesApp.instance!! as Context).getDefaultSharedPreferences()
     val toolbar by lazy { findViewById(R.id.toolbar) as Toolbar }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,8 +112,12 @@ class MainActivity : BaseActivity() {
         swipe_refresh_layout.isRefreshing = false
     }
 
-
+    /**
+     * Set up [Toolbar] navigation icon and title
+     */
     private fun setupToolbar() {
         toolbar.setNavigationIcon(R.drawable.ic_menu)
+        toolbar.title = getString(R.string.toolbar_title,
+                mPrefs.getString(RepositoriesApp.REPOSITORY_TYPE, getString(R.string.default_repositories)))
     }
 }

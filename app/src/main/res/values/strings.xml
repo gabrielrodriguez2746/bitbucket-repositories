@@ -6,5 +6,8 @@
     <string name="no_internet">No internet connection</string>
     <!--Retry-->
     <string name="retry">RETRY</string>
-
+    <!--Toolbar Title-->
+    <string name="toolbar_title" translatable="false">%1$s Repositories</string>
+    <!--Default Repositories Type-->
+    <string name="default_repositories" translatable="false">Java</string>
 </resources>
